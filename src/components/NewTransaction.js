@@ -10,8 +10,13 @@ const NewTransaction = ({ handleSubmit }) => (
         <h1>Add a new Transaction Here</h1>
         <Form onSubmit={handleSubmit} autoComplete="off">
             <Form.Field>
-                <label>Title</label>
-                <Field name="title" component="input" required
+                <label>ShortUrl</label>
+                <Field name="short_url" component="input" required
+                       type="text" placeholder='Something unique!' />
+            </Form.Field>
+            <Form.Field>
+                <label>LongUrl</label>
+                <Field name="long_url" component="input" required
                        type="text" placeholder='Something unique!' />
             </Form.Field>
             <Button primary type='submit'>Save</Button>

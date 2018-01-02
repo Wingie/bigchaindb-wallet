@@ -3,11 +3,28 @@ import moment from 'moment'
 
 
 class Datastream extends Component {
+    constructor() {
+        super()
+    
+        this.state = {
+          name: '',
+        }
+      }
+    
+    handleChange(e) {
+        // If you are using babel, you can use ES 6 dictionary syntax { [e.target.name] = e.target.value }
+        var change = {}
+        change[e.target.name] = e.target.value
+        console.log(change)
+        this.setState(change)
+      }
+
     render() {
         const {
             datastream,
             owner,
-            onClick
+            onClick,
+            newVal
         } = this.props
 
         if (!datastream) {
@@ -25,8 +42,14 @@ class Datastream extends Component {
                 <hr />
                 <div
                     className="datastream-epoch datastream-epoch-add"
-                    onClick={() => onClick(datastream._txId, Math.random())} >
+                    onClick={() => onClick(datastream._txId, this.state.name)} >
                     + Generate randomish datapoint
+                </div>
+                <div className="datastream-epoch datastream-epoch-add">
+                    <input  type="name" 
+                            value={this.state.name} 
+                            onChange={this.handleChange.bind(this)}
+                    ></input>
                 </div>
                 {
                     datastream.provenance
@@ -44,7 +67,8 @@ class Datastream extends Component {
                                 </span>
                                 <span> - { epoch._txId}</span>
                                 <span className="datastream-epoch-data">{ epoch.metadata.value }</span>
-                            </div>
+                                <span className="datastream-epoch-data">{ epoch.metadata.payload ? epoch.metadata.payload.title : "." }</span>
+                        </div>
                         ))
                 }
             </div>

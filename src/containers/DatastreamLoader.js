@@ -13,7 +13,7 @@ export default connect(
         getTransaction(transactionId)
         var owner
         if(state.datastreams[transactionId]){
-            // console.log(state.datastreams[transactionId]._pk)
+            console.log(state.datastreams[transactionId])
             // var pk = state.datastreams[transactionId].provenance[0].from[0].owners_before[0]
             var pk = state.datastreams[transactionId]._pk
             owner = (mapPublicKeyToProfile(pk, state))
